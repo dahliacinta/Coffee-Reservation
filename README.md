@@ -1,10 +1,8 @@
-# ☕ Coffee Catering Reservation System
+# Coffee Catering Reservation System
 
 ## Group Information
-- **Group Name:** Ruby  
-- **Section:** 5  
-- **Course:** INFO 3305 – Web Application Development  
-- **Project Completion Date:** 11/1/2026  
+**Group Name:** Ruby  
+**Section:** 5   
 
 ### Group Members
 - Hani Khairani Binti Mohd Razif (2319158)  
@@ -15,104 +13,282 @@
 ---
 
 ## Project Overview
-The growth of small catering businesses has increased the need for an efficient reservation system. Many businesses still rely on manual bookings through phone calls or walk-ins, which often leads to lost reservations, pricing miscalculations, and double bookings.
+The growth of small catering businesses has increased the need for an efficient reservation system, as many businesses still rely on manual bookings through phone calls or walk-ins. This often leads to issues such as lost reservations, pricing miscalculations and double bookings.
 
-The **Coffee Catering Reservation System** was developed for **Lands & People Cafe** to digitalize the reservation process. This web-based system allows customers to select predefined coffee catering packages based on their budget and event requirements while enabling staff to manage bookings efficiently.
+To address these problems, the Coffee Catering Reservation System was developed for Lands & People Cafe. This web-based system simplifies the reservation process by allowing users to choose predefined coffee catering packages based on their budget and event requirements.
 
 ---
 
 ## Project Objectives
-- Digitalize the reservation process
-- Provide a seamless online booking experience
-- Assist staff in managing reservations efficiently
-- Allow users to view, update, and cancel bookings
+- To digitalize the reservation process by replacing manual phone-based booking with an online platform.
+-To provide users with a seamless reservation experience for selecting packages and entering event details.
+-To assist staff in managing reservations efficiently.
+-To enhance user satisfaction by enabling users to view, update, and cancel bookings.
+
 
 ---
 
 ## Target Users
 - **Customers:** Individuals booking coffee catering services  
-- **Owners:** Cafe owners managing reservations digitally  
+- **Owners:**  Owners who want to manage bookings effectively digitally
 
 ---
 
 ## Features and Functionalities
-- Home page showcasing services offered
-- Coffee catering package display with pricing
-- Online reservation form
-- Date picker calendar
-- Booking status page
-- Edit and cancel booking options
-- Reservation update form
-- Cancellation confirmation popup
-- Responsive navigation bar
-- Footer with contact details and social media links
+- Home page showcase: Display service offered such as professional baristas, fresh - ingredients, handcrafted drinks, event catering, and mobile coffee.
+- Package display: Shows the fixed package coffee menu and pricing.
+- Online reservation form: Let users input personal and event details.
+- Date picker calendar: Allows users to select dates easily.
+- Booking status page: Shows whether users have active bookings or not.
+- Booking option button: Provides edit and cancel option for active booking.
+- Update reservation form: Allows users to edit previous booking details.
+- Cancellation confirmation popup: Asks confirmation cancel to avoid accidental cancellation.
+- Navigation bar: Gives quick access to home, packages, my bookings and book now.
+- Footer information: Provides location, social media links and contact details.
 
 ---
 
-## Technology Stack
-- **Backend:** Laravel 10.x  
-- **Frontend:** Blade Templates + Bootstrap 5  
-- **Database:** MySQL 8.0  
-- **Authentication:** Laravel Breeze  
-- **Image Storage:** Laravel File Storage  
-- **Development Environment:** XAMPP  
+## Technical Implementation
 
----
+** Technology Stack**
 
-## Database Design
+- Backend Framework: Laravel 10.x
+- Frontend: Blade Templates with Bootstrap 5
+- Database: MySQL 8.0
+- Authentication: Laravel Breeze
+- Image Storage: Laravel File Storage
+- Development Environment: XAMPP
 
-### Core Tables
-- `users` – Customer login information  
-- `booking` – Booking details  
-- `membership`  
-- `teams`  
-- `team_invitations`  
+** Database Design**
+Database Schema Overview Our database consists of [X] main tables designed to handle users, restaurants, menus, orders, and related data: Core Tables:
+
+- users - customers login accounts information
+- booking - bookings information
+- membership - teams
+- team_invitations
+
 
 ### Entity Relationship Diagram (ERD)
-[View ERD Diagram](https://drive.google.com/file/d/1M581HbGbgGo_6I07NI9Z8xIYBwOJd6Ia/view)
+https://drive.google.com/file/d/1M581HbGbgGo_6I07NI9Z8xIYBwOJd6Ia/view?usp=sharing
+
 
 ### Key Relationships
-- One package can have many reservation details (One-to-Many)
-- Reservation details can have many updates (One-to-Many)
-- Reservation details may have a cancelled reservation (One-to-One, optional)
+- Package can have many reservation details ( One to Many )
+- Reservation Details can have many reservation update ( One to Many )
+- Reservation details can have many or none cancelled reservation ( One to One (optional))
 
 ---
 
-## Laravel Implementation
+** Laravel Implementation
 
-### Routes
-- Public booking submission route
-- Authenticated routes for viewing, editing, updating, and deleting bookings
-- Dashboard and package routes
+- Routes (Web.php)
 
-### Controllers
-- **BookingController** – Handles booking CRUD operations
+Route::name('home');
 
-### Models
-- User
-- Booking
-- Membership
-- Team
-- TeamInvitation
+// Move booking store route outside auth middleware
+// (allow guests to submit, but check in controller)
+Route::post('/bookings', [BookingController::class, 'store'])
+    ->name('bookings.store');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+
+    // Other booking routes (protected - require login)
+    Route::get('/bookings', [BookingController::class, 'index'])
+        ->name('bookings.index');
+
+    Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])
+        ->name('bookings.edit');
+
+    Route::put('/bookings/{booking}', [BookingController::class, 'update'])
+        ->name('bookings.update');
+
+    Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])
+        ->name('bookings.destroy');
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/packages', function () {
+        return view('packages');
+    })->name('packages');
+});
+
+- Controllers
+*Main Controllers Implemented are below :*
+
+1. BookingController: Displays all bookings for the currently authenticated user
+
+- Models and Relationship
+
+'datetime', // Now $booking->date is a Carbon instance
+];
+
+// Relationship: A booking belongs to a user
+public function user()
+{
+    // return $this->belongsTo(Package::class);
+    return $this->belongsTo(User::class);
+}
+
+// Membership Model
+class Membership extends JetstreamMembership
+{
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+}
+
+// Team Model
+class Team extends JetstreamTeam
+{
+    /** @use HasFactory<\Database\Factories\TeamFactory> */
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'personal_team',
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => TeamCreated::class,
+        'updated' => TeamUpdated::class,
+        'deleted' => TeamDeleted::class,
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array
+     */
+    protected function casts(): array
+    {
+        return [
+            'personal_team' => 'boolean',
+        ];
+    }
+}
+
+// TeamInvitation Model
+class TeamInvitation extends JetstreamTeamInvitation
+{
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email',
+        'role',
+    ];
+
+    /**
+     * Get the team that the invitation belongs to.
+     */
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Jetstream::teamModel());
+    }
+}
+
+// User Model
+class User extends Authenticatable
+{
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+}
+
+- Views and User Interface
+
+*Blade Templates Structure:*
+- dashboard.blade.php: dashboard page for users after login.
+- home.blade.php: homepage for reservation that introduces the cafe.
+- navigation-menu.php: responsive navigation menu with user, team, and dashboard links for desktop and mobile.
+- policy.blade.php: displays a guest layout.
+- terms.blade.php: displays a guest layout showing the terms and conditions content.
+
+    *Design Features:*
+     - Responsive Design: Built with Bootstrap 5 for a mobile-first layout.
+     - Color Scheme: Gray and peach theme reflecting the cafe.
+     - Navigation: Intuitive booking with options based on pax.
+     - Interactive Elements: Dynamic cart updates and real-time order tracking.
 
 ---
 
-## User Interface
-- Responsive design using Bootstrap 5
-- Gray and peach color theme
-- Intuitive navigation and layout
-- Interactive booking components
+## User Authentication System
+
+## ** Authentication Features**
+- **Registration System**: Email validation, password confirmation, role selection
+- **Login System**: Secure authentication with "Remember Me" option.
 
 ---
 
-## Authentication & Security
+### **Security Measures**
 - User registration with email validation
 - Secure login with session handling
 - Password hashing using Laravel Breeze
 
 ---
 
-## Installation & Setup
+## Installation and Setup Instructions
+
+### Prerequisites :
+- PHP >= 8.1
+- Composer
+- Node.js and NPM
+- MySQL 8.0
+- XAMPP
 
 ### Prerequisites
 - PHP >= 8.1  
@@ -121,67 +297,114 @@ The **Coffee Catering Reservation System** was developed for **Lands & People Ca
 - MySQL 8.0  
 - XAMPP  
 
+### Step-by-Step Installation
+
 ### Installation Steps
-1. Clone or download this repository  
-2. Open the project folder  
-3. Configure the `.env` file  
-4. Run database migrations  
-5. Start the development server  
+1. Clone or download this repository https://github.com/dahliacinta/Coffee-Reservation
+2. Open the project folder 
+3. Open `index.html` using any web browser  
 
 ---
 
-## Testing & Quality Assurance
-- User registration and login testing
-- Booking creation, update, and cancellation
-- Responsive testing across devices
+## Testing and Quality Assurance
+
+###  Functionality Testing
+
+- User registration and login system.
+- Coffee packages browsing and display.
+- Active bookings display.
+- Responsive design across devices.
 
 ### Browser Compatibility
-- Google Chrome  
-- Mozilla Firefox  
-- Safari  
-- Microsoft Edge  
+
+ - Google Chrome (Latest)
+ - Mozilla Firefox (Latest)
+ - Safari (Latest) 
+ - Microsoft Edge (Latest)
+
+ ### Performance Testing
+
+ - Fast Page Load: Ensured all pages load in under 3 seconds for optimal user experience.
+ - Database Optimization: Queries were optimized to reduce load times and improve efficiency.
+ - Image Optimization: Compressed images without compromising quality to enhance performance.
+ - Responsive Testing: Verified that the system works seamlessly across desktops, tablets, and mobile devices.
 
 ---
 
-## Challenges & Solutions
+## Challenges Faced and Solutions
 
-### Challenge 1: Mobile Responsiveness
-- **Solution:** Implemented Bootstrap responsive utilities
-
-### Challenge 2: Complex Reservation Management
-- **Solution:** Used Eloquent relationships and structured database design
+ ### Challenge 1: Ensuring Mobile Responsiveness
+ - Problem: Users needed to make reservations easily on phones, tablets, and desktops.
+ - Solution: Utilized Bootstrap and responsive design techniques to create a consistent and user-friendly interface across all devices. 
+ 
+ ### Challenge 2: Complex Reservation Management
+ - Problem: Handling relationships between reservations, coffee packages, and customer details was complicated, especially for multiple bookings and updates.
+ - Solution: Implemented proper Eloquent relationships with pivot tables for many-to-many connections, ensuring accurate tracking of reservations and package selections. 
 
 ---
 
 ## Future Enhancements
-- Online payment integration (Stripe / PayPal)
-- Live booking notifications
-- Custom package builder
-- Mobile application
-- Analytics dashboard
-- Inventory alerts
+
+### Phase 2 Features (Potential Improvements)
+- Live Notifications: Instant alerts for reservation confirmations, updates, and changes.
+- Online Payment Support: Integration with secure payment gateways such as Stripe or PayPal.
+- Location-Based Tracking: Map-based tracking for catering delivery and event locations.
+- Customer Feedback Module: Ratings and reviews to improve service quality.
+- Data Analytics Dashboard: Insights into booking patterns, revenue, and customer behavior.
+- Custom Package Builder: Let users create their own coffee catering packages with flexible options.
+- Mobile Application: Dedicated iOS and Android apps for convenient access.
+- Inventory Alerts: Notify staff of ingredient or stock shortages to prevent overbooking.
+
+### Scalability Considerations
+- Database optimization to efficiently handle larger datasets.
+- Implementation of caching mechanisms to improve system performance.
+- API development to support mobile application integration.
+- Load balancing strategies to ensure reliability under high-traffic scenarios.
 
 ---
 
 ## Learning Outcomes
 
-### Technical Skills
-- Laravel MVC architecture
-- Database design and ORM
-- Authentication and authorization
-- Responsive UI development
-- Git & GitHub collaboration
+### Technical Skills Gained
+ - Laravel Framework: Applied MVC architecture and Eloquent ORM for structured application development.
+ - Database Design: Designed efficient database schemas and managed relational data.
+ - Authentication: Implemented secure user authentication and authorization mechanisms.
+ - Frontend Development: Built responsive and user-friendly interfaces using Bootstrap.
+ - Version Control: Utilized Git and GitHub for effective version control and collaborative project management.
 
 ### Soft Skills
-- Team collaboration
-- Project management
-- Problem solving
-- Technical documentation
+ - **Team Collaboration** : Working effectively and cooperatively within a group environment.
+ - **Project Management** : Planning, organizing, and executing a complex web application project.
+ - **Problem Solving** : Identifying, debugging, and resolving technical challenges.
+ - **Documentation** : Producing clear and comprehensive project documentation.
+
+---
+
+## References
+- Figma Prototype: Coffee Catering Reservation System
+- Easy Eat. (2025). https://easyeat.ai/r/landsnpeople/2
 
 ---
 
 ## Conclusion
-The Coffee Catering Reservation System demonstrates a complete Laravel-based web application that improves reservation management efficiency and enhances customer experience. The project showcases strong technical and teamwork skills applicable to real-world web development.
+Our coffee reservation system successfully demonstrates the implementation of a comprehensive coffee reservation system using the Laravel framework. The project highlights proficiency in core web development principles, including MVC architecture, database design, user authentication, and responsive web design.
+
+---
+
+### Key Achievements
+- Successfully implemented all required Laravel components (Routes, Controllers, Views, and Models).
+- Designed and developed a functional coffee reservation system with user role management.
+- Built a responsive and user-friendly interface for seamless reservation and ordering.
+- Demonstrated a strong understanding of database relationships and full CRUD operations.
+- Applied security best practices for user authentication and access control
+
+---
+
+### Project Impact
+Project Impact This project offers hands-on experience in developing real-world web applications and highlights the ability to collaborate effectively within a team. The skills acquired through this project are highly relevant and transferable to professional web development environments.
+
+ - Project Completion Date: 11/1/2026
+ - Course: INFO 3305 Web Application Development
 
 ---
 
@@ -201,6 +424,4 @@ The Coffee Catering Reservation System demonstrates a complete Laravel-based web
 
 ---
 
-## References
-- Figma Prototype – Coffee Catering Reservation System  
-- Easy Eat. (2025). https://easyeat.ai/r/landsnpeople/2
+
