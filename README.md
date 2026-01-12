@@ -29,7 +29,7 @@ The **Coffee Catering Reservation System** was developed for **Lands & People Ca
 
 ---
 
-## 👥 Target Users
+## Target Users
 - **Customers:** Individuals booking coffee catering services  
 - **Owners:** Cafe owners managing reservations digitally  
 
