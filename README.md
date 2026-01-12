@@ -1,59 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ☕ Coffee Catering Reservation System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Group Information
+- **Group Name:** Ruby  
+- **Section:** 5  
+- **Course:** INFO 3305 – Web Application Development  
+- **Project Completion Date:** 11/1/2026  
 
-## About Laravel
+### Group Members
+- Hani Khairani Binti Mohd Razif (2319158)  
+- Dahlia Cinta Binti Abdul Razak (2317562)  
+- Dania Safiyya Binti Farid (2310056)  
+- Hanis Binti Azhar (2312128)  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Overview
+The growth of small catering businesses has increased the need for an efficient reservation system. Many businesses still rely on manual bookings through phone calls or walk-ins, which often leads to lost reservations, pricing miscalculations, and double bookings.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The **Coffee Catering Reservation System** was developed for **Lands & People Cafe** to digitalize the reservation process. This web-based system allows customers to select predefined coffee catering packages based on their budget and event requirements while enabling staff to manage bookings efficiently.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Project Objectives
+- Digitalize the reservation process
+- Provide a seamless online booking experience
+- Assist staff in managing reservations efficiently
+- Allow users to view, update, and cancel bookings
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 👥 Target Users
+- **Customers:** Individuals booking coffee catering services  
+- **Owners:** Cafe owners managing reservations digitally  
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## Features and Functionalities
+- Home page showcasing services offered
+- Coffee catering package display with pricing
+- Online reservation form
+- Date picker calendar
+- Booking status page
+- Edit and cancel booking options
+- Reservation update form
+- Cancellation confirmation popup
+- Responsive navigation bar
+- Footer with contact details and social media links
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## Technology Stack
+- **Backend:** Laravel 10.x  
+- **Frontend:** Blade Templates + Bootstrap 5  
+- **Database:** MySQL 8.0  
+- **Authentication:** Laravel Breeze  
+- **Image Storage:** Laravel File Storage  
+- **Development Environment:** XAMPP  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Database Design
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Core Tables
+- `users` – Customer login information  
+- `booking` – Booking details  
+- `membership`  
+- `teams`  
+- `team_invitations`  
 
-## Security Vulnerabilities
+### Entity Relationship Diagram (ERD)
+[View ERD Diagram](https://drive.google.com/file/d/1M581HbGbgGo_6I07NI9Z8xIYBwOJd6Ia/view)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Key Relationships
+- One package can have many reservation details (One-to-Many)
+- Reservation details can have many updates (One-to-Many)
+- Reservation details may have a cancelled reservation (One-to-One, optional)
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Laravel Implementation
+
+### Routes
+- Public booking submission route
+- Authenticated routes for viewing, editing, updating, and deleting bookings
+- Dashboard and package routes
+
+### Controllers
+- **BookingController** – Handles booking CRUD operations
+
+### Models
+- User
+- Booking
+- Membership
+- Team
+- TeamInvitation
+
+---
+
+## User Interface
+- Responsive design using Bootstrap 5
+- Gray and peach color theme
+- Intuitive navigation and layout
+- Interactive booking components
+
+---
+
+## Authentication & Security
+- User registration with email validation
+- Secure login with session handling
+- Password hashing using Laravel Breeze
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+- PHP >= 8.1  
+- Composer  
+- Node.js & NPM  
+- MySQL 8.0  
+- XAMPP  
+
+### Installation Steps
+1. Clone or download this repository  
+2. Open the project folder  
+3. Configure the `.env` file  
+4. Run database migrations  
+5. Start the development server  
+
+---
+
+## Testing & Quality Assurance
+- User registration and login testing
+- Booking creation, update, and cancellation
+- Responsive testing across devices
+
+### Browser Compatibility
+- Google Chrome  
+- Mozilla Firefox  
+- Safari  
+- Microsoft Edge  
+
+---
+
+## Challenges & Solutions
+
+### Challenge 1: Mobile Responsiveness
+- **Solution:** Implemented Bootstrap responsive utilities
+
+### Challenge 2: Complex Reservation Management
+- **Solution:** Used Eloquent relationships and structured database design
+
+---
+
+## Future Enhancements
+- Online payment integration (Stripe / PayPal)
+- Live booking notifications
+- Custom package builder
+- Mobile application
+- Analytics dashboard
+- Inventory alerts
+
+---
+
+## Learning Outcomes
+
+### Technical Skills
+- Laravel MVC architecture
+- Database design and ORM
+- Authentication and authorization
+- Responsive UI development
+- Git & GitHub collaboration
+
+### Soft Skills
+- Team collaboration
+- Project management
+- Problem solving
+- Technical documentation
+
+---
+
+## Conclusion
+The Coffee Catering Reservation System demonstrates a complete Laravel-based web application that improves reservation management efficiency and enhances customer experience. The project showcases strong technical and teamwork skills applicable to real-world web development.
+
+---
+
+## Screenshots
+### Home Page
+![Home Page](screenshots/screenshot-HomePage.jpeg)
+
+### Packages Page
+![Packages Page](screenshots/screenshot-Packages.png)
+
+### Reservation Form
+![Reservation Form](screenshots/screenshot-BookingForm.jpeg)
+
+### My Bookings Page
+![My Bookings](screenshots/screenshot-Mybookings.png)
+
+
+---
+
+## References
+- Figma Prototype – Coffee Catering Reservation System  
+- Easy Eat. (2025). https://easyeat.ai/r/landsnpeople/2
