@@ -125,8 +125,7 @@ Route::middleware([
 
 - Models and Relationship
 
-'datetime', // Now $booking->date is a Carbon instance
-];
+'datetime', // Now $booking->date is a Carbon instance;
 
 // Relationship: A booking belongs to a user
 public function user()
@@ -420,6 +419,8 @@ Project Impact This project offers hands-on experience in developing real-world 
 
 ### My Bookings Page
 ![My Bookings](screenshots/screenshot-Mybookings.png)
+
+
 
 
 ---
