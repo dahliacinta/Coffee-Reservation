@@ -54,12 +54,6 @@
               </div>
             </div>
 
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your booking was updated successfully.</div>
-            </div>
-
             <div class="text-center mt-4">
               <button type="submit" class="btn-book-table">Update Booking</button>
               <a href="{{ route('bookings.index') }}" class="btn btn-secondary ms-2">Cancel</a>
