@@ -60,12 +60,13 @@ To address these problems, the Coffee Catering Reservation System was developed 
 - Development Environment: XAMPP
 
 ** Database Design**
-Database Schema Overview Our database consists of [X] main tables designed to handle users, restaurants, menus, orders, and related data: Core Tables:
+Database Schema Overview Our database consists of [X] main tables designed to handle users, bookings and related data: Core Tables:
 
-- users - customers login accounts information
-- booking - bookings information
-- membership - teams
-- team_invitations
+- Users – Stores customers’ login and account information.
+- Booking – Stores booking details made by users.
+- Membership – Stores users’ membership or subscription information.
+- Teams – Stores team information created within the system.
+- Team Invitations – Stores invitation details for users to join teams.
 
 
 ### Entity Relationship Diagram (ERD)
@@ -257,11 +258,11 @@ class User extends Authenticatable
 - policy.blade.php: displays a guest layout.
 - terms.blade.php: displays a guest layout showing the terms and conditions content.
 
-    *Design Features:*
-     - Responsive Design: Built with Bootstrap 5 for a mobile-first layout.
-     - Color Scheme: Gray and peach theme reflecting the cafe.
-     - Navigation: Intuitive booking with options based on pax.
-     - Interactive Elements: Dynamic cart updates and real-time order tracking.
+ *Design Features:*
+- Responsive Design: Built with Bootstrap 5 for a mobile-first layout.
+- Color Scheme: Gray and peach theme reflecting the cafe.
+- Navigation: Intuitive booking with options based on pax.
+- Interactive Elements: Dynamic cart updates and real-time order tracking.
 
 ---
 
@@ -402,7 +403,7 @@ Our coffee reservation system successfully demonstrates the implementation of a 
 ### Project Impact
 Project Impact This project offers hands-on experience in developing real-world web applications and highlights the ability to collaborate effectively within a team. The skills acquired through this project are highly relevant and transferable to professional web development environments.
 
- - Project Completion Date: 11/1/2026
+ - Project Completion Date: 13/1/2026
  - Course: INFO 3305 Web Application Development
 
 ---
