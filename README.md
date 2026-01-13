@@ -268,10 +268,78 @@ class User extends Authenticatable
 - Views and User Interface
 
 *Blade Templates Structure:*
-- home.blade.php: homepage for reservation that introduces the cafe.
-- navigation-menu.php: responsive navigation menu with user, team, and dashboard links for desktop and mobile.
-- policy.blade.php: displays a guest layout.
-- terms.blade.php: displays a guest layout showing the terms and conditions content.
+
+*api:*
+- api-token-manage.blade.php – Manage API tokens
+- index.blade.php – Main listing page for a resource
+
+*auth:*
+- confirm-password.blade.php – Confirm password for sensitive actions
+- forgot-password.blade.php – Request password reset
+- login.blade.php – User login form
+- register.blade.php – User registration form
+- reset-password.blade.php – Set new password after reset
+- two-factor-challenge.blade.php – 2FA verification form
+- verify-email.blade.php – Email verification notice
+  
+*bookings:*
+edit.blade.php – Edit resource form
+
+*components:*
+- action-message.blade.php – Displays temporary success/error messages
+- action-section.blade.php – Wrapper section for action forms
+- application-logo.blade.php – App logo
+- application-mark.blade.php – Small app mark/logo
+- authentication-card-logo.blade.php – Logo in authentication card
+- authentication-card.blade.php – Card wrapper for login/register forms
+- banner.blade.php – Site-wide notification banner
+- button.blade.php – Generic button component
+- checkbox.blade.php – Styled checkbox input
+- confirmation-modal.blade.php – Modal for confirming actions
+- danger-button.blade.php – Button for destructive actions
+- dialog-modal.blade.php – General-purpose modal dialog
+- dropdown-link.blade.php – Link inside a dropdown menu
+- dropdown.blade.php – Dropdown menu wrapper
+- form-section.blade.php – Section wrapper for forms
+- input-error.blade.php – Displays input validation errors
+- input.blade.php – Input field component
+- label.blade.php – Input label component
+- modal.blade.php – General modal wrapper
+- nav-link.blade.php – Navigation link component
+- responsive-nav-link.blade.php – Nav link for mobile/responsive view
+- secondary-button.blade.php – Styled secondary button
+- section-border.blade.php – Decorative border between sections
+- section-title.blade.php – Styled section heading
+- switchable-team.blade.php – Component to switch between teams
+- validation-errors.blade.php – Displays all form validation errors
+- welcome.blade.php – Welcome/home page for guests
+
+*emailss:*
+- team-invitation.blade.php – Page for inviting users to a team
+
+*layouts:*
+- app.blade.php – Main layout for authenticated users
+- guest.blade.php – Layout for guest pages (login, register)
+  
+*master:*
+- layout.blade.php – Base layout wrapper
+- delete-user-form.blade.php – Form to delete a user account
+- logout-other-browser-sessions-form.blade.php – Log out from other devices
+- show.blade.php – View single resource details
+- two-factor-authentication-form.blade.php – Manage 2FA setup
+- update-password-form.blade.php – Form to update user password
+- update-profile-information-form.blade.php – Update profile info form
+
+*teams:*
+- create-team-form.blade.php – Form to create a new team
+- create.blade.php – Form to create a resource
+- team-member-manager.blade.php – Manage team members
+- update-team-name-form.blade.php – Form to update a team’s name
+  
+- home.blade.php – Homepage for cafe reservation introduction
+- navigation-menu.php – Responsive navigation menu
+- policy.blade.php – Guest page showing policy content
+- terms.blade.php – Guest page showing terms and conditions
 
  *Design Features:*
 - Responsive Design: Built with Bootstrap 5 for a mobile-first layout.
@@ -310,6 +378,7 @@ class User extends Authenticatable
 ### Installation Steps
 
 1. Clone the Repository
+   
    bash/n
    https://github.com/dahliacinta/Coffee-Reservation
    cd Coffee-Reservation
