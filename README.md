@@ -61,7 +61,7 @@ To address these problems, the Coffee Catering Reservation System was developed 
 ** Database Design**
 Database Schema Overview Our database consists of 5 main tables designed to handle users, bookings and related data: Core Tables:
 
-- Users – Stores customers’ login and account information.
+- Users – Stores customers's login and account information.
 - Booking – Stores booking details made by users.
 - Membership – Stores users’ membership or subscription information.
 - Teams – Stores team information created within the system.
@@ -305,13 +305,6 @@ class User extends Authenticatable
 - MySQL 8.0
 - XAMPP
 
-### Prerequisites
-- PHP >= 8.1  
-- Composer  
-- Node.js & NPM  
-- MySQL 8.0  
-- XAMPP  
-
 ### Step-by-Step Installation
 
 ### Installation Steps
@@ -320,7 +313,8 @@ class User extends Authenticatable
    bash/n
    https://github.com/dahliacinta/Coffee-Reservation
    cd Coffee-Reservation
-3. Install Dependencies
+   
+2. Install Dependencies
 
 bashcomposer install
 npm install
