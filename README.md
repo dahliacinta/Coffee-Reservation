@@ -21,9 +21,8 @@ To address these problems, the Coffee Catering Reservation System was developed 
 
 ## Project Objectives
 - To digitalize the reservation process by replacing manual phone-based booking with an online platform.
--To provide users with a seamless reservation experience for selecting packages and entering event details.
--To assist staff in managing reservations efficiently.
--To enhance user satisfaction by enabling users to view, update, and cancel bookings.
+- To provide users with a seamless reservation experience for selecting packages and entering event details.
+- To enhance user satisfaction by enabling users to view, update, and cancel bookings.
 
 
 ---
@@ -60,7 +59,7 @@ To address these problems, the Coffee Catering Reservation System was developed 
 - Development Environment: XAMPP
 
 ** Database Design**
-Database Schema Overview Our database consists of [X] main tables designed to handle users, bookings and related data: Core Tables:
+Database Schema Overview Our database consists of 5 main tables designed to handle users, bookings and related data: Core Tables:
 
 - Users – Stores customers’ login and account information.
 - Booking – Stores booking details made by users.
@@ -109,10 +108,6 @@ Route::middleware([
 
     Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])
         ->name('bookings.destroy');
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     Route::get('/packages', function () {
         return view('packages');
@@ -273,7 +268,6 @@ class User extends Authenticatable
 - Views and User Interface
 
 *Blade Templates Structure:*
-- dashboard.blade.php: dashboard page for users after login.
 - home.blade.php: homepage for reservation that introduces the cafe.
 - navigation-menu.php: responsive navigation menu with user, team, and dashboard links for desktop and mobile.
 - policy.blade.php: displays a guest layout.
@@ -290,7 +284,7 @@ class User extends Authenticatable
 ## User Authentication System
 
 ## ** Authentication Features**
-- **Registration System**: Email validation, password confirmation, role selection
+- **Registration System**: Email validation, password confirmation
 - **Login System**: Secure authentication with "Remember Me" option.
 
 ---
@@ -321,9 +315,31 @@ class User extends Authenticatable
 ### Step-by-Step Installation
 
 ### Installation Steps
-1. Clone or download this repository https://github.com/dahliacinta/Coffee-Reservation
-2. Open the project folder 
-3. Open `index.html` using any web browser  
+
+1. Clone the Repository
+   bash/n
+   https://github.com/dahliacinta/Coffee-Reservation
+   cd Coffee-Reservation
+3. Install Dependencies
+
+bashcomposer install
+npm install
+
+3. Environment Configuration
+
+bashcp .env.example .env
+php artisan key:generate
+
+4. Database Setup
+
+bash# Configure database in .env file
+php artisan migrate
+php artisan db:seed
+
+5. Start Development Server
+
+bashphp artisan serve
+npm run dev
 
 ---
 
