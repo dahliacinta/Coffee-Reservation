@@ -115,8 +115,8 @@ Route::middleware([
 });
 
 - Controllers
+  
 *Main Controllers Implemented are below :*
-
 1. BookingController: Displays all bookings for the currently authenticated user
 
 - Models and Relationship
