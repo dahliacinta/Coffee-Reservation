@@ -6,8 +6,7 @@
 
 ### Group Members
 - Hani Khairani Binti Mohd Razif (2319158)  
-- Dahlia Cinta Binti Abdul Razak (2317562)  
-- Dania Safiyya Binti Farid (2310056)  
+- Dahlia Cinta Binti Abdul Razak (2317562) 
 - Hanis Binti Azhar (2312128)  
 
 ---
